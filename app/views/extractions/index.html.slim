@@ -1,0 +1,5 @@
+.btn-container
+  = form_tag extractions_get_path do
+    = text_field_tag :url
+
+    = submit_tag 'Search', class: 'btn'

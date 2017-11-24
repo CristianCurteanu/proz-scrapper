@@ -1,0 +1,25 @@
+.form-container
+  = form_for @profile, url: extractions_create_path do |f|
+    = f.hidden_field :source, value: @datas['source']
+
+    = f.label :first_name
+    = f.text_field :first_name, input_options('First name', :first_name).merge(value: @datas['first_name'])
+
+    = f.label :last_name
+    = f.text_field :last_name, input_options('Last name', :last_name).merge(value: @datas['last_name'])
+
+    = f.label :country
+    = f.text_field :country, input_options('Country', :country).merge(value: @datas['country'])
+
+    = f.label :native_language
+    = f.text_field :native_language, input_options('Native Language', :native_language).merge(value: @datas['native_language'])
+
+
+
+    = f.label :target_language
+    - @datas['target_language'].each do |language|
+      = f.text_field language.downcase.to_sym, value: language
+
+    = f.submit "Store", class: 'btn'
+    '&nbsp
+    = link_to "Back", root_path, class: 'btn-flat'
