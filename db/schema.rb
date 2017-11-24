@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20171123130005) do
     t.string   "country"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["first_name"], name: "index_profiles_on_first_name"
+    t.index ["last_name"], name: "index_profiles_on_last_name"
+    t.index ["source"], name: "index_profiles_on_source", unique: true
   end
 
 end
