@@ -10,6 +10,8 @@ class Profile < ApplicationRecord
             :native_language,
             presence: true
 
+  validates :source, uniqueness: true
+
   before_save do
     self.target_language = target_languages.join(', ')
   end

@@ -22,7 +22,7 @@ class ExtractionsController < ApplicationController
       flash[:success] = 'Profile data added'
       redirect_to root_path
     else
-      session[:errors] = @profile.errors.messages
+      handle_profile_errors!
       redirect_back(fallback_location: root_path)
     end
   end
@@ -41,6 +41,11 @@ class ExtractionsController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(allowed_profile_params)
+  end
+
+  def handle_profile_errors!
+    flash[:error] = "Profile already stored" if @profile.errors.key?(:source)
+    session[:errors] = @profile.errors.messages
   end
 
   def allowed_profile_params
